@@ -1,0 +1,81 @@
+server:
+  # 端口
+  port: 8080
+
+spring:
+  application:
+    # 项目的名字，虽然不是分布式，但是还是写上吧
+    name: classroom
+    #   配置redis的三个属性
+    redis:
+      host: 47.114.73.72
+      port: 6379
+      password:
+  # 配置数据库的四项属性
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/classroom?useUnicode=true&characterEncoding=utf-8&nullCatalogMeansCurrent=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # rabbitmq 配置
+#  rabbitmq:
+#    host: localhost
+#    username: guest
+#    password: guest
+#    port: 5672
+#    #虚拟主机
+#    virtual-host: /
+#    #消费者配置，配置手动回复
+#    listener:
+#      simple:
+#        # 设置手动 ACK
+#        acknowledge-mode: manual
+#    # 开启生产者确认和返回
+#    publisher-confirm-type: simple
+#    # 开启失败返回
+#    publisher-returns: true
+# mybatis 基础配置
+mybatis:
+  # mapper 的xml路径
+  mapper-locations: classpath:com/example/classroom/mapper/*xml
+  # pojo 的基础包
+  type-aliases-package: com.example.classroom.pojo
+#layering-cache 配置
+layering-cache:
+  # 开启 layering-cache
+  stats: false
+  # 缓存命名空间，如果不配置取 "spring.application.name"
+  namespace: layering-cache-web
+  # 配置 redis
+  redis:
+    host: 127.0.0.1
+    database: 0
+    port: 6379
+    password: 123456
+
+# eureka客户端配置
+#eureka:
+#  client:
+#    service-url:
+#      # 这个是服务器注册的地址
+#      defaultZone: http://aheproject:123456@localhost:8761/eureka
+#
+## feign 接口调用配置
+#feign:
+#  hystrix:
+#    # 开启服务降级
+#    enabled: true
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE
+# 防止swagger数据转换异常
+#logging:
+#  level:
+#    io:
+#      swagger:
+#        models:
+#          parameters:
+#            AbstractSerializableParameter: error
